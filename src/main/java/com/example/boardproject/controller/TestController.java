@@ -12,4 +12,9 @@ public class TestController {
     public void test(){
         log.info("mainPage");
     }
+
+    @RequestMapping("/reply")
+    public String reply(){
+        return "/commentPage";
+    }
 }
