@@ -1,6 +1,6 @@
 package com.example.boardproject.dto;
 
-import com.example.shopping.entity.Product;
+import com.example.boardproject.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.example.boardproject.repository;
 
-import com.example.shopping.entity.Product;
-import com.example.shopping.repository.ProductRepository;
+import com.example.boardproject.entity.Product;
+import com.example.boardproject.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

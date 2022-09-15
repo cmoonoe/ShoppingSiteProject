@@ -1,6 +1,6 @@
 package com.example.boardproject.mybatis;
 
-import com.example.shopping.dto.BoardDTO;
+import com.example.boardproject.dto.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

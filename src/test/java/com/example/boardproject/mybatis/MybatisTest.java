@@ -1,6 +1,6 @@
 package com.example.boardproject.mybatis;
 
-import com.example.shopping.dto.BoardDTO;
+import com.example.boardproject.dto.BoardDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
