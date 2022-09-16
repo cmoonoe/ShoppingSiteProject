@@ -15,7 +15,7 @@ public interface BoardService {
                 .bTitle(board.getBTitle())
                 .bWriter(board.getBWriter())
                 .bImage(board.getBImage())
-                .product(board.getPid())
+                .pId(board.getPId())
                 .build();
 
         return boardDTO;
@@ -30,7 +30,7 @@ public interface BoardService {
                 .bDate(boardDTO.getBDate())
                 .bImage(boardDTO.getBImage())
                 .bPw(boardDTO.getBPw())
-                .pid(boardDTO.getProduct())
+                .pId(boardDTO.getPId())
                 .build();
 
         return entity;
