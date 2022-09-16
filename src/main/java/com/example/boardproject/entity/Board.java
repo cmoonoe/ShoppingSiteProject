@@ -1,20 +1,15 @@
 package com.example.boardproject.entity;
-/**
- * created : OH
- * last update : 2022.09.16
- */
-import com.example.boardproject.domain.UploadFile;
+
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import com.example.boardproject.domain.UploadFile;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

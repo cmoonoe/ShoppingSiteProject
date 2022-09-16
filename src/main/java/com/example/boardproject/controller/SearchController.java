@@ -1,6 +1,7 @@
 package com.example.boardproject.controller;
 
 import com.example.boardproject.repository.SearchRepository;
+import com.example.boardproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +12,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequiredArgsConstructor
 public class SearchController {
     private final SearchRepository searchRepository;
+    private final BoardService boardService;
+
     @GetMapping("/")
-    String main(Model model) {
+    public String main(Model model) {
         model.addAttribute("productList", searchRepository.productList());
         return "main";
     }
 
     @GetMapping("/product/{pId}")
-    String showContents4(@PathVariable Long pId, Model model) {
-        model.addAttribute("allContents", searchRepository.searchList(pId));
+    public String productList(@PathVariable Long pId, PageRequestDTO pageRequestDTO, Model model) {
+        model.addAttribute("lists", boardService.getList(pId, pageRequestDTO));
         model.addAttribute("pId", pId);
         return "list";
-
     }
+
+
 }

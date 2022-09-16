@@ -1,10 +1,5 @@
 package com.example.boardproject.dto;
 
-/**
- * created : OH
- * last update : 2022.09.16
- */
-
 import com.example.boardproject.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

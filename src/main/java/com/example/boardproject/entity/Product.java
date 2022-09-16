@@ -22,6 +22,4 @@ public class Product {
     @Column(length = 254)
     private String pImage;
 
-
-
 }
