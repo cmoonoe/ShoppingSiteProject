@@ -5,40 +5,40 @@ import com.example.boardproject.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 
 @SpringBootTest
 class BoardRepositoryTest {
-
-    private BoardRepository boardRepository;
-
     @Autowired
-    public BoardRepositoryTest(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
-
-    @Test
-    public void insertBoard(){
-        IntStream.rangeClosed(1,100).forEach(i->{
-
-            Product product = Product.builder()
-                    .pId(1)
-                    .build();
+    private BoardRepository boardRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
 
-            Board board = Board.builder()
-                    .bTitle("bTitle " + i)
-                    .bWriter("bWriter " + i)
-                    .bContent("bContent " + i)
-                    .bImage("bImage " + i)
-                    .bPw("bPW " + i)
-                    .pid(product)
-                    .build();
-
-            System.out.println(boardRepository.save(board));
-
-        });
-    }
+//    @Test
+//    public void insertBoard() {
+//        LongStream.rangeClosed(101, 200).forEach(i -> {
+//
+//            Optional<Product> byId = productRepository.findById(i);
+//            Product product = byId.get();
+//
+//            Board board = Board.builder()
+//                    .bContent("bContent " + i)
+//                    .bImage("bImage " + i)
+//                    .bPw("bPW " + i)
+//                    .bTitle("bTitle " + i)
+//                    .bWriter("bWriter " + i)
+//                    .pid(product)
+//                    .build();
+//
+//            System.out.println(boardRepository.save(board));
+//
+//        });
+//    }
 }

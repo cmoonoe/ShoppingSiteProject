@@ -1,14 +1,20 @@
 package com.example.boardproject.entity;
-
+/**
+ * created : OH
+ * last update : 2022.09.16
+ */
+import com.example.boardproject.domain.UploadFile;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -30,18 +36,28 @@ public class Board{
     @Column(length = 100, name="bContent")
     private String bContent;
 
-    @Column(name="bImage")
-    private String bImage;
+    @ElementCollection
+    @CollectionTable(name = "files",
+            joinColumns = @JoinColumn(name = "fId"))
+    private List<UploadFile> pImageFiles;
 
     @Column(length = 20,name="bPw", nullable = false)
     private String bPw;
 
-    @CreatedDate
-    @Column(updatable = false, name="bDate",nullable = false)
+    @CreationTimestamp
+    @Column(updatable = false, name="bDate")
     private LocalDateTime bDate;
 
     @ManyToOne
     @JoinColumn(name = "pId")
     private Product pid;
 
+    public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, String bPw,Product pid) {
+        this.bTitle = bTitle;
+        this.bWriter = bWriter;
+        this.bContent = bContent;
+        this.pImageFiles = pImageFiles;
+        this.bPw = bPw;
+        this.pid = pid;
+    }
 }
