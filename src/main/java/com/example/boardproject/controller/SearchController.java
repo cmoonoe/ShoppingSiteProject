@@ -1,5 +1,6 @@
 package com.example.boardproject.controller;
 
+import com.example.boardproject.dto.PageRequestDTO;
 import com.example.boardproject.repository.SearchRepository;
 import com.example.boardproject.service.BoardService;
 import lombok.RequiredArgsConstructor;

@@ -28,7 +28,6 @@ public class BoardServiceImpl implements BoardService {
         this.searchRepository = searchRepository;
     }
 
-    @Override
     public PageResultDTO<BoardDTO, Board> getList(int pId, PageRequestDTO pageRequestDTO) {
         PageRequest pageRequest = pageRequestDTO.getPageable(Sort.by("bId").descending());
 
