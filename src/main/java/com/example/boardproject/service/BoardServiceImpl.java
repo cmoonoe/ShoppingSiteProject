@@ -1,6 +1,7 @@
 package com.example.boardproject.service;
 
 import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.dto.BoardWriteDTO;
 import com.example.boardproject.dto.PageRequestDTO;
 import com.example.boardproject.dto.PageResultDTO;
 import com.example.boardproject.entity.Board;
@@ -28,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
         this.searchRepository = searchRepository;
     }
 
-    public PageResultDTO<BoardDTO, Board> getList(int pId, PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<BoardDTO, Board> getList(Long pId, PageRequestDTO pageRequestDTO) {
         PageRequest pageRequest = pageRequestDTO.getPageable(Sort.by("bId").descending());
 
         Page<Board> result = searchRepository.findByPId(pId,pageRequest);

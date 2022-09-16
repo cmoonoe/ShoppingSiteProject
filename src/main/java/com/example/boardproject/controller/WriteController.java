@@ -5,7 +5,7 @@ package com.example.boardproject.controller;
  */
 
 import com.example.boardproject.domain.UploadFile;
-import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.dto.BoardWriteDTO;
 import com.example.boardproject.entity.Board;
 import com.example.boardproject.entity.Product;
 import com.example.boardproject.repository.ProductRepository;
@@ -37,7 +37,7 @@ public class WriteController {
     }
 
     @PostMapping("/write/{pId}")
-    public String saveBoard(@ModelAttribute BoardDTO boardDTO,
+    public String saveBoard(@ModelAttribute BoardWriteDTO boardWriteDTO,
                             RedirectAttributes redirectAttributes,
                             @PathVariable Long pId) throws IOException {
 
@@ -45,13 +45,13 @@ public class WriteController {
         Product product = result.get();
 
         List<UploadFile> storeImageFiles =
-                fileService.storeFiles(boardDTO.getPImageFiles());
+                fileService.storeFiles(boardWriteDTO.getPImageFiles());
 
-        Board board = new Board(boardDTO.getBTitle(),
-                boardDTO.getBWriter(),
-                boardDTO.getBContent(),
+        Board board = new Board(boardWriteDTO.getBTitle(),
+                boardWriteDTO.getBWriter(),
+                boardWriteDTO.getBContent(),
                 storeImageFiles,
-                boardDTO.getBPw(),
+                boardWriteDTO.getBPw(),
                 product);
 
         writeRepository.save(board);
