@@ -1,12 +1,13 @@
 package com.example.boardproject.dto;
 
+import com.example.boardproject.domain.UploadFile;
 import com.example.boardproject.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -14,9 +15,12 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class BoardDTO {
-        private String bTitle;
-        private String bWriter;
-        private String bContent;
-        private List<MultipartFile> pImageFiles;
-        private String bPw;
+    private Long bId;
+    private String bTitle;
+    private String bWriter;
+    private LocalDateTime bDate;
+    private String bContent;
+    private List<UploadFile> pImageFiles;
+    private String bPw;
+    private Product pId;
 }

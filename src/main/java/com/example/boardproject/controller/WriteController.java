@@ -12,6 +12,7 @@ import com.example.boardproject.repository.ProductRepository;
 import com.example.boardproject.repository.WriteRepository;
 import com.example.boardproject.service.FileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,8 @@ public class WriteController {
     private final WriteRepository writeRepository;
     private final FileService fileService;
     private final ProductRepository productRepository;
+
+
 
     @GetMapping("/write/{pId}")
     public String writeForm(@PathVariable Long pId, Model model) {
