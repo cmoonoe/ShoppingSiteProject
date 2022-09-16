@@ -1,6 +1,8 @@
 package com.example.boardproject.service;
 
 import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.dto.PageRequestDTO;
+import com.example.boardproject.dto.PageResultDTO;
 import com.example.boardproject.entity.Board;
 
 
@@ -19,7 +21,9 @@ public interface BoardService {
                 .build();
 
         return boardDTO;
+
     }
+    PageResultDTO<BoardDTO, Board> getList(Long pid, PageRequestDTO pageRequestDTO);
 //
 //    default Board DtoToEntity(BoardDTO boardDTO){
 //        Board entity = Board.builder()

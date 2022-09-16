@@ -21,24 +21,23 @@ class BoardRepositoryTest {
     private ProductRepository productRepository;
 
 
-//    @Test
-//    public void insertBoard() {
-//        LongStream.rangeClosed(101, 200).forEach(i -> {
-//
+    @Test
+    public void insertBoard() {
+        LongStream.rangeClosed(101, 200).forEach(i -> {
+
 //            Optional<Product> byId = productRepository.findById(i);
 //            Product product = byId.get();
-//
-//            Board board = Board.builder()
-//                    .bContent("bContent " + i)
-//                    .bImage("bImage " + i)
-//                    .bPw("bPW " + i)
-//                    .bTitle("bTitle " + i)
-//                    .bWriter("bWriter " + i)
-//                    .pid(product)
-//                    .build();
-//
-//            System.out.println(boardRepository.save(board));
-//
-//        });
-//    }
+            Product product1 = Product.builder().pId(101l).build();
+            Board board = Board.builder()
+                    .bContent("bContent " + i)
+                    .bPw("bPW " + i)
+                    .bTitle("bTitle " + i)
+                    .bWriter("bWriter " + i)
+                    .pId(product1)
+                    .build();
+
+            System.out.println(boardRepository.save(board));
+
+        });
+    }
 }
