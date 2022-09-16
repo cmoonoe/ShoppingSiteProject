@@ -1,6 +1,8 @@
 package com.example.boardproject.service;
 
 import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.dto.PageRequestDTO;
+import com.example.boardproject.dto.PageResultDTO;
 import com.example.boardproject.entity.Board;
 
 
@@ -15,7 +17,7 @@ public interface BoardService {
                 .bTitle(board.getBTitle())
                 .bWriter(board.getBWriter())
                 .bImage(board.getBImage())
-                .product(board.getPid())
+                .pId(board.getPId())
                 .build();
 
         return boardDTO;
@@ -30,9 +32,11 @@ public interface BoardService {
                 .bDate(boardDTO.getBDate())
                 .bImage(boardDTO.getBImage())
                 .bPw(boardDTO.getBPw())
-                .pid(boardDTO.getProduct())
+                .pId(boardDTO.getPId())
                 .build();
 
         return entity;
     }
+    PageResultDTO<BoardDTO, Board> getList(int pid, PageRequestDTO pageRequestDTO);
+
 }
