@@ -30,6 +30,7 @@ public class Board{
     @Column(length = 100, name="bContent")
     private String bContent;
 
+    @Lob
     @Column(name="bImage")
     private String bImage;
 
