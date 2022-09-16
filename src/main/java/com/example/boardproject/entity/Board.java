@@ -2,6 +2,7 @@ package com.example.boardproject.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -30,7 +31,6 @@ public class Board{
     @Column(length = 100, name="bContent")
     private String bContent;
 
-    @Lob
     @Column(name="bImage")
     private String bImage;
 
@@ -44,4 +44,5 @@ public class Board{
     @ManyToOne
     @JoinColumn(name = "pId")
     private Product pId;
+
 }

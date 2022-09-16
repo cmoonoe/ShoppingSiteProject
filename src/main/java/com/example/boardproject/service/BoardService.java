@@ -1,6 +1,8 @@
 package com.example.boardproject.service;
 
 import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.dto.PageRequestDTO;
+import com.example.boardproject.dto.PageResultDTO;
 import com.example.boardproject.entity.Board;
 
 
@@ -35,4 +37,6 @@ public interface BoardService {
 
         return entity;
     }
+    PageResultDTO<BoardDTO, Board> getList(int pid, PageRequestDTO pageRequestDTO);
+
 }

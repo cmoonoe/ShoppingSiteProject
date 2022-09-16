@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Log4j2
 @Controller
+@RequestMapping("/list")
 public class ListController {
 
     @Autowired
@@ -22,13 +24,4 @@ public class ListController {
     public ListController(BoardService boardService) {
         this.boardService = boardService;
     }
-
-    @GetMapping("/list2")
-    public String list(Model model){
-        log.info("------------------- list --------------------");
-        model.addAttribute("lists", iBoardDao.list());
-
-        return "list";
-    }
-
 }
