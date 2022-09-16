@@ -19,15 +19,32 @@ class CommentRepositoryTest {
 
     @Test
     void uploadComment() {
-        Board b1 = Board.builder().bId(1L).build();
-        IntStream.rangeClosed(1,10).forEach(i->{
-            Comment comment = Comment.builder().cContent("testComment..." + i).cWriter("tester " + i).cPw("test"+i).cDate(LocalDate.now()).board(b1).build();
+        Board b1 = Board.builder().bId(2).build();
+        IntStream.rangeClosed(1,5).forEach(i->{
+            Comment comment = Comment.builder().cContent("testComment..." + i).cWriter("tester " + i).cPw("test"+i).board(b1).build();
             System.out.println(commentRepository.save(comment));
         });
     }
 
     @Test
-    void deleteComment(){
+    void updateComment(){
+        int id = 2;
+        Comment comment = Comment.builder().cContent("testUpdate...").cId(id).build();
+        System.out.println(commentRepository.save(comment));
+    }
+
+//    @Test
+//    void deleteOneComment(){
+//        commentRepository.deleteById(1L);
+//    }
+
+    @Test
+    void selectone(){
+        System.out.println(commentRepository.showCommentList(1));
+    }
+
+    @Test
+    void deleteAllComment(){
         commentRepository.deleteAll();
     }
 }

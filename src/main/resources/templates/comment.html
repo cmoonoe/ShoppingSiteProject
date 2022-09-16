@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+<div class="container">
+    <label>댓글 작성</label>
+    <form class="commentForm">
+        <div class="input--comment">
+            <input type="hidden" name="bId" th:value="${bId}">
+            <textarea name="cContent" id="cContent"></textarea>
+            <input type="text" name="cWriter" id="cWriter">
+            <input type="text" name="cPw" id="cPw">
+            <button type="button" id="upload--btn">댓글등록</button>
+        </div>
+    </form>
+</div>
+    <br>
+    <div clss="commentList"></div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    // $(document).ready(function(){
+    //    $.ajax({
+    //        url: "/reply",  //이상
+    //        type: "get",
+    //        datatype: "json",
+    //        success: function(data){
+    //            let str = JSON.stringify(data);
+    //            alert(str);
+    //        },
+    //        error: function(){
+    //            alert("에러발생");
+    //        }
+    //    });
+    // });
+</script>
+</html>

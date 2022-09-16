@@ -1,8 +1,12 @@
 package com.example.boardproject.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +19,7 @@ import java.time.LocalDateTime;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bId;
+    private int bId;
 
     @Column(length = 30, nullable = false)
     private String bTitle;
@@ -26,8 +30,8 @@ public class Board {
     @Column(length = 100, nullable = false)
     private String bContent;
 
-    @Column
-    private LocalDateTime bDate;
+    @CreationTimestamp
+    private Timestamp bDate;
 
     @Column
     private String bImage;
