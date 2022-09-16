@@ -34,7 +34,7 @@ class BoardRepositoryTest {
                     .bContent("bContent " + i)
                     .bImage("bImage " + i)
                     .bPw("bPW " + i)
-                    .pid(product)
+                    .pId(product)
                     .build();
 
             System.out.println(boardRepository.save(board));

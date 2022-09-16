@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class BoardDTO {
-        private Long bId;
+        private int bId;
         private String bTitle;
         private String bWriter;
         private LocalDateTime bDate;
         private String bContent;
         private String bImage;
         private String bPw;
-        private Product product;
+        private Product pId;
 }

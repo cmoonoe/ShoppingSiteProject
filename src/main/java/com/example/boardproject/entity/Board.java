@@ -19,7 +19,7 @@ public class Board{
     @Id
     @Column(name="bId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bId;
+    private int bId;
 
     @Column(length = 30, name="bTitle",nullable = false)
     private String bTitle;
@@ -42,6 +42,5 @@ public class Board{
 
     @ManyToOne
     @JoinColumn(name = "pId")
-    private Product pid;
-
+    private Product pId;
 }

@@ -23,7 +23,7 @@ public class ListController {
         this.boardService = boardService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/list2")
     public String list(Model model){
         log.info("------------------- list --------------------");
         model.addAttribute("lists", iBoardDao.list());
