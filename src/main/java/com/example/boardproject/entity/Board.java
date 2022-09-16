@@ -1,7 +1,7 @@
 package com.example.boardproject.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -37,7 +37,7 @@ public class Board{
     @Column(length = 20,name="bPw", nullable = false)
     private String bPw;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(updatable = false, name="bDate",nullable = false)
     private LocalDateTime bDate;
 
