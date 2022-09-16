@@ -8,7 +8,7 @@ last update : 09/16-->
 </head>
 <body>
 <div>
-    <form method="post" action="/board/write" enctype="multipart/form-data">
+    <form method="post" th:action="@{/board/write/{pId}(pId=${pId})}" enctype="multipart/form-data">
         <div>
             <label for="bTitle">타이틀</label>
             <input id="bTitle" name="bTitle" type="text">
@@ -29,8 +29,6 @@ last update : 09/16-->
             <label for="bPw">패스워드</label>
             <input id="bPw" name="bPw" type="text">
         </div>
-        <label for="pId">pId</label>
-        <input id="pId" name="pId" type="text">
 
         <button type="submit">작성</button>
     </form>

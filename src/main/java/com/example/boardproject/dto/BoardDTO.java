@@ -24,5 +24,4 @@ public class BoardDTO {
         private String bContent;
         private List<MultipartFile> pImageFiles;
         private String bPw;
-        private Product pId;
 }

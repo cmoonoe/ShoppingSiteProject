@@ -50,7 +50,7 @@ public class Board{
 
     @ManyToOne
     @JoinColumn(name = "pId")
-    private Product pid;
+    private Product pId;
 
     public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, String bPw,Product pid) {
         this.bTitle = bTitle;
@@ -58,6 +58,6 @@ public class Board{
         this.bContent = bContent;
         this.pImageFiles = pImageFiles;
         this.bPw = bPw;
-        this.pid = pid;
+        this.pId = pid;
     }
 }
