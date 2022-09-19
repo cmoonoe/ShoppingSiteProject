@@ -19,6 +19,7 @@ public class Product {
     @Column(length = 10)
     private String pName;
 
+    @Lob
     @Column(length = 254)
     private String pImage;
 
