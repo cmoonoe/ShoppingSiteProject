@@ -2,6 +2,7 @@ package com.example.boardproject.controller;
 
 import com.example.boardproject.dto.BoardDTO;
 import com.example.boardproject.dto.ProductDTO;
+import com.example.boardproject.repository.CommentRepository;
 import com.example.boardproject.service.ShowService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ShowController {
 
     private final ShowService showService;
+    private final CommentRepository commentRepository;
 
     /* 제품 상세 리뷰 보기 */
     @GetMapping("/showBoard/{bId}")
@@ -28,6 +30,10 @@ public class ShowController {
         BoardDTO board = showService.getByBId(bId);
         model.addAttribute("board", board);
 
-        return "showBoard";
+        /* 댓글 목록 불러오기 - cw */
+        model.addAttribute("comments", commentRepository.showCommentList(bId));
+
+        /* showBoard.html에 댓글 부분 직접 붙여넣지 않고 fragment 사용해서 구현하려고 수정함 - cw */
+        return "comment";
     }
 }
