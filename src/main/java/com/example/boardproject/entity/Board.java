@@ -31,18 +31,28 @@ public class Board{
     @Column(length = 100, name="bContent")
     private String bContent;
 
-    @Column(name="bImage")
-    private String bImage;
+    @ElementCollection
+    @CollectionTable(name = "files",
+            joinColumns = @JoinColumn(name = "fId"))
+    private List<UploadFile> pImageFiles;
 
     @Column(length = 20,name="bPw", nullable = false)
     private String bPw;
 
     @CreationTimestamp
-    @Column(updatable = false, name="bDate",nullable = false)
+    @Column(updatable = false, name="bDate", nullable = false)
     private LocalDateTime bDate;
 
     @ManyToOne
     @JoinColumn(name = "pId")
     private Product pId;
 
+    public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, String bPw,Product pid) {
+        this.bTitle = bTitle;
+        this.bWriter = bWriter;
+        this.bContent = bContent;
+        this.pImageFiles = pImageFiles;
+        this.bPw = bPw;
+        this.pId = pid;
+    }
 }
