@@ -19,4 +19,8 @@ public interface SearchRepository extends JpaRepository<Board, Integer> {
     @Query("select p from Product p ")
     List<Product> productList();
 
+//    0919 ho 추가 - 검색기능 메서드(이중 셀렉트문)
+    @Query(value = "select * from( select * from Board where bTitle like %:keyword%) a where pId=:pId", nativeQuery = true)
+    Page<Board> searchMethod(String keyword, int pId, Pageable pageable);
+
 }
