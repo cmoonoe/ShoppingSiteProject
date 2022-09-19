@@ -45,7 +45,6 @@ public class PageResultDTO<DTO, Entity> {
 
         totalPage = result.getTotalPages();
 
-        totalElement = result.getTotalElements();
         number = result.getNumber();
         size = result.getSize();
 
