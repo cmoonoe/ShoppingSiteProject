@@ -1,7 +1,9 @@
 package com.example.boardproject.controller;
 
+
 import com.example.boardproject.repository.SearchRepository;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +19,13 @@ public class SearchController {
         return "main";
     }
 
+
     @GetMapping("/product/{pId}")
     String showContents4(@PathVariable Long pId, Model model) {
-        model.addAttribute("allContents", searchRepository.searchList(pId));
+        model.addAttribute("lists", searchRepository.searchList(pId));
         model.addAttribute("pId", pId);
         return "list";
-
     }
+ 
+
 }

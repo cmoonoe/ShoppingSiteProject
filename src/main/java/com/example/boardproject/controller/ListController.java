@@ -15,16 +15,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class ListController {
 
-    private final IBoardDao iBoardDao;
-    private final BoardService boardService;
-
-
-    @GetMapping("/list")
-    public String list(Model model){
-        log.info("------------------- list --------------------");
-        model.addAttribute("lists", iBoardDao.list());
-
-        return "list";
-    }
 
 }

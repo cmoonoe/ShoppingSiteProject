@@ -14,31 +14,31 @@ import java.util.stream.LongStream;
 
 
 @SpringBootTest
+@RequiredArgsConstructor
 class BoardRepositoryTest {
-    @Autowired
-    private BoardRepository boardRepository;
-    @Autowired
-    private ProductRepository productRepository;
+    
+    private final BoardRepository boardRepository;
+
+    @Test
+    public void insertBoard(){
+        IntStream.rangeClosed(1,100).forEach(i->{
+
+            Product product = Product.builder()
+                    .pId(1)
+                    .build();
 
 
-//    @Test
-//    public void insertBoard() {
-//        LongStream.rangeClosed(101, 200).forEach(i -> {
-//
-//            Optional<Product> byId = productRepository.findById(i);
-//            Product product = byId.get();
-//
-//            Board board = Board.builder()
-//                    .bContent("bContent " + i)
-//                    .bImage("bImage " + i)
-//                    .bPw("bPW " + i)
-//                    .bTitle("bTitle " + i)
-//                    .bWriter("bWriter " + i)
-//                    .pid(product)
-//                    .build();
-//
-//            System.out.println(boardRepository.save(board));
-//
-//        });
-//    }
+            Board board = Board.builder()
+                    .bTitle("bTitle " + i)
+                    .bWriter("bWriter " + i)
+                    .bContent("bContent " + i)
+                    .bImage("bImage " + i)
+                    .bPw("bPW " + i)
+                    .pId(product)
+                    .build();
+
+            System.out.println(boardRepository.save(board));
+
+        });
+    }
 }

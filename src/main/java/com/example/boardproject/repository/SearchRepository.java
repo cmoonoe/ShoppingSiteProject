@@ -10,8 +10,11 @@ import java.util.List;
 
 public interface SearchRepository extends JpaRepository<Board, Integer> {
 
+
+
     @Query("select b from Board b where b.pId.pId = :pId")
-    List<Board> searchList(@Param("pId") Long pId);
+    List<Board> searchList(@Param("pId") int pId);
+
 
     @Query("select p from Product p ")
     List<Product> productList();
