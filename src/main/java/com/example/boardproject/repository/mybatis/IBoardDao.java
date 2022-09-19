@@ -1,4 +1,4 @@
-package com.example.boardproject.mybatis;
+package com.example.boardproject.repository.mybatis;
 
 import com.example.boardproject.entity.Board;
 import org.apache.ibatis.annotations.Mapper;
