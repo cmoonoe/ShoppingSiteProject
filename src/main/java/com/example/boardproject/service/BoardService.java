@@ -27,7 +27,6 @@ public interface BoardService {
 
     }
 
-    PageResultDTO<BoardDTO, Board> getList(int pid, PageRequestDTO pageRequestDTO);
 
     default Board DtoToEntity(BoardDTO boardDTO) {
 
@@ -45,5 +44,6 @@ public interface BoardService {
         return entity;
     }
 
+    PageResultDTO<BoardDTO, Board> getList(int pId, PageRequestDTO pageRequestDTO);
 
 }
