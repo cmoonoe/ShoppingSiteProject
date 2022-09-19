@@ -1,6 +1,6 @@
 package com.example.boardproject.mybatis;
 
-import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.entity.Board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -17,9 +17,9 @@ public class MybatisTest {
 
     @Test
     public void test(){
-        List<BoardDTO> list = iBoardDao.list();
+        List<Board> list = iBoardDao.list();
 
-        for(BoardDTO boardDTO : list){
+        for(Board boardDTO : list){
             System.out.println(boardDTO);
         }
     }
