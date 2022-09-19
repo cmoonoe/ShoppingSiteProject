@@ -1,6 +1,5 @@
 package com.example.boardproject.mybatis;
 
-import com.example.boardproject.dto.BoardDTO;
 import com.example.boardproject.entity.Board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

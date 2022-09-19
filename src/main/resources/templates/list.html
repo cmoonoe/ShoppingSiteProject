@@ -20,14 +20,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="dto : ${allContents}">
-                <th scope="row">[[${dto.bId}]]</th>
+            <tr th:each="dto , i: ${lists.dtoList}">
+                <th scope="row">[[${i.count}]]</th>
                 <td><a href="#">[[${dto.bTitle}]]</a></td>
                 <td>[[${dto.bWriter}]]</td>
                 <td>[[${#temporals.format(dto.bDate, 'yyyy/MM/dd')}]]</td>
             </tr>
             </tbody>
         </table>
+
+        <ul class="pagination justify-content-center align-items-center">
+
+            <li class="page-item" th:if="${lists.prev}">
+                <a class="page-link" th:href="@{/list(page = ${lists.start-1})}"> &lt;&lt;</a>
+            </li>
+
+            <li th:class=" 'page-item' + ${lists.page == page? 'active':''}" th:each="page: ${lists.pageList}">
+                <a class="page-link" th:href="@{/list/{page}(page=${page})}">[[${page}]]</a>
+            </li>
+
+            <li class="page-item" th:if="${lists.next}">
+                <a class="page-link" th:href="@{/list(page=${lists.end+1})}">&gt;&gt;</a>
+            </li>
+        </ul>
+
     </th:block>
 </th:block>
 </html>

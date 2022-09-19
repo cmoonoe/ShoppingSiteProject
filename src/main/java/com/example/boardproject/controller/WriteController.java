@@ -1,11 +1,11 @@
 package com.example.boardproject.controller;
 /**
  * created : OH
- * last update : 2022.09.16
+ * last update : 2022.09.19
  */
 
 import com.example.boardproject.domain.UploadFile;
-import com.example.boardproject.dto.BoardDTO;
+import com.example.boardproject.dto.BoardWriteDTO;
 import com.example.boardproject.entity.Board;
 import com.example.boardproject.entity.Product;
 import com.example.boardproject.repository.ProductRepository;
@@ -30,28 +30,29 @@ public class WriteController {
     private final FileService fileService;
     private final ProductRepository productRepository;
 
+
     @GetMapping("/write/{pId}")
-    public String writeForm(@PathVariable Long pId, Model model) {
-        model.addAttribute("pId",pId);
+    public String writeForm(@PathVariable int pId, Model model) {
+        model.addAttribute("pId", pId);
         return "write";
     }
 
     @PostMapping("/write/{pId}")
-    public String saveBoard(@ModelAttribute BoardDTO boardDTO,
+    public String saveBoard(@ModelAttribute BoardWriteDTO boardWriteDTO,
                             RedirectAttributes redirectAttributes,
-                            @PathVariable Long pId) throws IOException {
+                            @PathVariable int pId) throws IOException {
 
         Optional<Product> result = productRepository.findById(pId);
         Product product = result.get();
 
         List<UploadFile> storeImageFiles =
-                fileService.storeFiles(boardDTO.getPImageFiles());
+                fileService.storeFiles(boardWriteDTO.getPImageFiles());
 
-        Board board = new Board(boardDTO.getBTitle(),
-                boardDTO.getBWriter(),
-                boardDTO.getBContent(),
+        Board board = new Board(boardWriteDTO.getBTitle(),
+                boardWriteDTO.getBWriter(),
+                boardWriteDTO.getBContent(),
                 storeImageFiles,
-                boardDTO.getBPw(),
+                boardWriteDTO.getBPw(),
                 product);
 
         writeRepository.save(board);
@@ -60,6 +61,17 @@ public class WriteController {
         redirectAttributes.addFlashAttribute("bId", board.getBId());
 
         return "redirect:/";
+    }
+
+    /**
+     * test 메서드 지워도 무방
+     */
+    @GetMapping("/test")
+    public String test(Model model) {
+        Optional<Board> result1 = writeRepository.findById(217);
+        Board result = result1.get();
+        model.addAttribute("img", result);
+        return "layout/defaultForm";
     }
 }
 
