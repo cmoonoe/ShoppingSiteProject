@@ -18,27 +18,20 @@ public class ShowServiceImpl implements ShowService{
         this.boardService = boardService;
     }
 
-    /* bid, pid로 board 찾기 */
+    /* bid로 board 찾기 */
     @Override
-    public BoardDTO getByBId(int bId, int pId) {
+    public BoardDTO getByBId(int bId) {
 
         BoardDTO boardDTO = boardService.entityToDto(showRepository.findByBId(bId).get());
-        ProductDTO productDTO = ProductDTO.entityToDto(showRepository.findByPId(pId).get());
 
-        boardDTO = getReviewImage(boardDTO, productDTO);
+        boardDTO = getReviewImage(boardDTO);
         boardDTO = getAsteriskWriter (boardDTO);
 
         return boardDTO;
     }
 
-    /* pid로 product 찾기 */
-    @Override
-    public ProductDTO getByPId(int pId) {
-        return ProductDTO.entityToDto(showRepository.findByPId(pId).get());
-    }
-
     /* 리뷰 사진이 없으면 상품 사진으로 대체 */
-    private BoardDTO getReviewImage (BoardDTO boardDTO, ProductDTO productDTO) {
+    private BoardDTO getReviewImage (BoardDTO boardDTO) {
 
         if (boardDTO.getPImageFiles() == null) {
             //boardDTO.setPImageFiles(productDTO.getPImage());

@@ -22,7 +22,7 @@
             <tbody>
             <tr th:each="dto , i: ${lists.dtoList}">
                 <th scope="row">[[${i.count}]]</th>
-                <td><a href="#">[[${dto.bTitle}]]</a></td>
+                <td><a th:href="@{/show/showBoard/{bId}(bId=${dto.bId})}">[[${dto.bTitle}]]</a></td>
                 <td>[[${dto.bWriter}]]</td>
                 <td>[[${#temporals.format(dto.bDate, 'yyyy/MM/dd')}]]</td>
             </tr>
