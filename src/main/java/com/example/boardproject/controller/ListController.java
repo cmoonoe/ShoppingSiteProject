@@ -1,6 +1,5 @@
 package com.example.boardproject.controller;
 
-
 import com.example.boardproject.mybatis.IBoardDao;
 import com.example.boardproject.service.BoardService;
 import lombok.extern.log4j.Log4j2;
