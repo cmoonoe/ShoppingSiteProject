@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class BoardDTO {
-    private Long bId;
+    private int bId;
     private String bTitle;
     private String bWriter;
     private LocalDateTime bDate;

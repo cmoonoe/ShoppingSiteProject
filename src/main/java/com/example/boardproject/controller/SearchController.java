@@ -18,7 +18,7 @@ public class SearchController {
     }
 
     @GetMapping("/product/{pId}")
-    String showContents4(@PathVariable Long pId, Model model) {
+    String showContents4(@PathVariable int pId, Model model) {
         model.addAttribute("allContents", searchRepository.searchList(pId));
         model.addAttribute("pId", pId);
         return "list";

@@ -31,7 +31,7 @@ public class WriteController {
     private final ProductRepository productRepository;
 
     @GetMapping("/write/{pId}")
-    public String writeForm(@PathVariable Long pId, Model model) {
+    public String writeForm(@PathVariable int pId, Model model) {
         model.addAttribute("pId",pId);
         return "write";
     }
@@ -39,7 +39,7 @@ public class WriteController {
     @PostMapping("/write/{pId}")
     public String saveBoard(@ModelAttribute BoardDTO boardDTO,
                             RedirectAttributes redirectAttributes,
-                            @PathVariable Long pId) throws IOException {
+                            @PathVariable int pId) throws IOException {
 
         Optional<Product> result = productRepository.findById(pId);
         Product product = result.get();
