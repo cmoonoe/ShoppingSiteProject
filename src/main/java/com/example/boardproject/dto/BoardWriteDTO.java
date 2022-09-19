@@ -13,9 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class BoardWriteDTO {
-        private String bTitle;
-        private String bWriter;
-        private String bContent;
-        private List<MultipartFile> pImageFiles;
-        private String bPw;
+    private String bTitle;
+    private String bWriter;
+    private String bContent;
+    private List<MultipartFile> pImageFiles;
+    private String bPw;
 }

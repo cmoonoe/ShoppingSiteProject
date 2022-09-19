@@ -22,7 +22,7 @@ public class SearchController {
     }
 
     @GetMapping("/product/{pId}")
-    public String productList(@PathVariable Long pId, PageRequestDTO pageRequestDTO, Model model) {
+    public String productList(@PathVariable int pId, PageRequestDTO pageRequestDTO, Model model) {
         model.addAttribute("lists", boardService.getList(pId, pageRequestDTO));
         model.addAttribute("pId", pId);
         return "list";

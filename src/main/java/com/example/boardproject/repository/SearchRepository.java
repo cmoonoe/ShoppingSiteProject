@@ -13,7 +13,7 @@ import java.util.List;
 public interface SearchRepository extends JpaRepository<Board, Integer> {
 
     @Query("select b from Board b where b.pId.pId = :pId")
-    Page<Board> findByPId(@Param("pId") Long pId, PageRequest pageRequest);
+    Page<Board> findByPId(@Param("pId") int pId, PageRequest pageRequest);
 
     @Query("select p from Product p ")
     List<Product> productList();

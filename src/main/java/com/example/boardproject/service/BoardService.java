@@ -8,7 +8,7 @@ import com.example.boardproject.entity.Board;
 
 public interface BoardService {
 
-    default BoardDTO entityToDto(Board board){
+    default BoardDTO entityToDto(Board board) {
         BoardDTO boardDTO = BoardDTO.builder()
                 .bId(board.getBId())
                 .bPw(board.getBPw())
@@ -23,20 +23,21 @@ public interface BoardService {
         return boardDTO;
 
     }
-    PageResultDTO<BoardDTO, Board> getList(Long pid, PageRequestDTO pageRequestDTO);
-//
-//    default Board DtoToEntity(BoardDTO boardDTO){
-//        Board entity = Board.builder()
-//                .bId(boardDTO.getBId())
-//                .bTitle(boardDTO.getBTitle())
-//                .bWriter(boardDTO.getBWriter())
-//                .bContent(boardDTO.getBContent())
-//                .bDate(boardDTO.getBDate())
-//                .bImage(boardDTO.getBImage())
-//                .bPw(boardDTO.getBPw())
-//                .pid(boardDTO.getProduct())
-//                .build();
-//
-//        return entity;
-//    }
+
+    PageResultDTO<BoardDTO, Board> getList(int pid, PageRequestDTO pageRequestDTO);
+
+    default Board DtoToEntity(BoardDTO boardDTO) {
+        Board entity = Board.builder()
+                .bId(boardDTO.getBId())
+                .bTitle(boardDTO.getBTitle())
+                .bWriter(boardDTO.getBWriter())
+                .bContent(boardDTO.getBContent())
+                .bDate(boardDTO.getBDate())
+                .pImageFiles(boardDTO.getPImageFiles())
+                .bPw(boardDTO.getBPw())
+                .pId(boardDTO.getPId())
+                .build();
+
+        return entity;
+    }
 }
