@@ -6,6 +6,7 @@ import com.example.boardproject.entity.Board;
 
 public interface BoardService {
 
+
     default BoardDTO entityToDto(Board board){
         BoardDTO boardDTO = BoardDTO.builder()
                 .bId(board.getBId())
@@ -35,4 +36,5 @@ public interface BoardService {
 
         return entity;
     }
+
 }
