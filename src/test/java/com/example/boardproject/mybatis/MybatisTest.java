@@ -13,16 +13,5 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class MybatisTest {
 
-    @Autowired
-    IBoardDao iBoardDao;
-
-    @Test
-    public void test(){
-        List<Board> list = iBoardDao.list();
-
-        for(Board boardDTO : list){
-            System.out.println(boardDTO);
-        }
-    }
 
 }
