@@ -40,8 +40,8 @@ public class ShowServiceImpl implements ShowService{
     /* 리뷰 사진이 없으면 상품 사진으로 대체 */
     private BoardDTO getReviewImage (BoardDTO boardDTO, ProductDTO productDTO) {
 
-        if (boardDTO.getBImage() == null) {
-            boardDTO.setBImage(productDTO.getPImage());
+        if (boardDTO.getPImageFiles() == null) {
+            //boardDTO.setPImageFiles(productDTO.getPImage());
             return boardDTO;
         } else {
             return boardDTO;
