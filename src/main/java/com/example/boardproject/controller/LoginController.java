@@ -51,7 +51,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         //세션에 로그인 회원 정보 저장
         session.setAttribute("loginMember", loginMember);
-
+        session.setAttribute("loginID", loginMember.getLoginId());
 
         return "redirect:/";
     }

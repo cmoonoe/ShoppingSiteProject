@@ -8,7 +8,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "post",
                 url: "/upload",
-                data: "cContent=" + $("#input--Content").val() + "&cWriter=" + $("#input--Writer").val() + "&cPw=" + $("#input--Pw").val() + "&bId=" + $("#input--Bid").val(),
+                data: "cContent=" + $("#input--Content").val() + "&cWriter=" + $("#input--Writer").val() + "&bId=" + $("#input--Bid").val(),
                 dataType: 'text',
                 success: function (data, status) {
                     alert("댓글이 등록되었습니다.");
@@ -23,28 +23,34 @@ $(document).ready(function () {
     });
 });
 
-function deleteComment(comment_id) {
-    $.ajax({
-        type: "post",
-        url: "/deleteComment",
-        data: {cId: comment_id},
-        dataType: 'text',
-        success: function (data, status) {
-            alert("댓글이 삭제되었습니다.");
-            location.href = "/show/showBoard/" + $("#input--Bid").val();
-        },
-        error: function (xhr, status, error) {
-            alert("댓글 삭제가 실패하였습니다.");
-            location.href = "/show/showBoard/" + $("#input--Bid").val();
-        }
-    });
+function deleteComment(comment_id, comment_writer, session_Id) {
+    if(comment_writer == session_Id){
+        $.ajax({
+            type: "post",
+            url: "/deleteComment",
+            data: {cId: comment_id},
+            dataType: 'text',
+            success: function (data, status) {
+                alert("댓글이 삭제되었습니다.");
+                location.href = "/show/showBoard/" + $("#input--Bid").val();
+            },
+            error: function (xhr, status, error) {
+                alert("댓글 삭제가 실패하였습니다.");
+                location.href = "/show/showBoard/" + $("#input--Bid").val();
+            }
+        });
+    }else{
+        alert("권한이 없는 글입니다.");
+        location.href = "/show/showBoard/" + $("#input--Bid").val();
+    }
+
 }
 
 
 //매개변수로 cContent랑 cWriter도 같이 받으려니까 숫자형이랑 같이 전달해서 그런지 오류남 - 완
 //어떻게 cContent랑 cWriter를 매개변수로 받아서 사용할 건지 찾기 - 완
 //수정하기 버튼 클릭하면 comment_id값을 받아와야하는데 그걸 못함 - 완
-function commentUpdateForm(comment_id, comment_writer, comment_content, comment_date) {
+function commentUpdateForm(comment_id, comment_writer, comment_content, comment_date, session_Id) {
     var commentview = "";
     commentview += '<div class="card" style="box-shadow: 10px 10px rgb(198, 197, 197);">';
     commentview += '<div class="card-header">';
@@ -66,8 +72,13 @@ function commentUpdateForm(comment_id, comment_writer, comment_content, comment_
     commentview += '</div>';
     commentview += '</div>';
     commentview += '</div>';
-    $("#" + comment_id).replaceWith(commentview);
-    $("#update--Content").focus();
+    if (comment_writer == session_Id){
+        $("#" + comment_id).replaceWith(commentview);
+        $("#update--Content").focus();
+    }else {
+        alert("권한이 없는 글입니다.");
+        location.href = "/show/showBoard/" + $("#input--Bid").val();
+    }
 }
 
 

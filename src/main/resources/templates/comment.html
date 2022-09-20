@@ -5,18 +5,6 @@
                 <h2 class="fw-bolder mb-4" style="color: rgb(101, 100, 100);">댓글</h2>
                 <br/>
                 <form>
-                    <div class="container" style="height: 50px;">
-                        <div class="input-group mb-3" style="width: 50%; float: left;">
-                            <span class="input-group-text" id="inputGroup-sizing-default">작성자</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                   aria-describedby="inputGroup-sizing-default" id="input--Writer" name="cWriter">
-                        </div>
-                        <div class="input-group mb-3" style="width: 50%; float: left;">
-                            <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
-                            <input type="password" class="form-control" aria-label="Sizing example input"
-                                   aria-describedby="inputGroup-sizing-default" id="input--Pw" name="cPw">
-                        </div>
-                    </div>
                     <div class="container">
                         <div class="form-floating">
                     <textarea class="form-control" placeholder="Leave a comment here" id="input--Content"
@@ -54,18 +42,37 @@
                                 <p class="card-text">[[${comments.cContent}]]</p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <input type="hidden" th:value="${comments.cId}" id="comment--cId">
-                                    <button class="btn btn-outline-secondary btn-sm Btn--updateComment"
-                                            th:id="${comments.cId}"
-                                            th:writer="${comments.cWriter}" th:content="${comments.cContent}"
-                                            th:date="${comments.cDate}"
-                                            th:onclick="commentUpdateForm(this.getAttribute('id'), this.getAttribute('writer'), this.getAttribute('content'), this.getAttribute('date'))"
-                                            type="button">댓글수정
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm Btn--deleteComment"
-                                            th:id="${comments.cId}"
-                                            th:onclick="deleteComment(this.getAttribute('id'))"
-                                            type="button">댓글삭제
-                                    </button>
+                                    <th:block th:if="${session.loginID} eq null">
+                                        <button class="btn btn-outline-secondary btn-sm Btn--updateComment"
+                                                th:id="${comments.cId}"
+                                                th:writer="${comments.cWriter}" th:content="${comments.cContent}"
+                                                th:date="${comments.cDate}"
+                                                th:onclick="commentUpdateForm(this.getAttribute('id'), this.getAttribute('writer'), this.getAttribute('content'), this.getAttribute('date'))"
+                                                type="button" disabled>댓글수정
+                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm Btn--deleteComment"
+                                                th:id="${comments.cId}"
+                                                th:onclick="deleteComment(this.getAttribute('id'))"
+                                                type="button" disabled>댓글삭제
+                                        </button>
+                                    </th:block>
+                                    <th:block th:unless="${session.loginID} eq null">
+                                        <button class="btn btn-outline-secondary btn-sm Btn--updateComment"
+                                                th:id="${comments.cId}"
+                                                th:writer="${comments.cWriter}" th:content="${comments.cContent}"
+                                                th:date="${comments.cDate}"
+                                                th:sessionId="${session.loginID}"
+                                                th:onclick="commentUpdateForm(this.getAttribute('id'), this.getAttribute('writer'), this.getAttribute('content'), this.getAttribute('date'), this.getAttribute('sessionID'))"
+                                                type="button">댓글수정
+                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm Btn--deleteComment"
+                                                th:id="${comments.cId}"
+                                                th:writer="${comments.cWriter}"
+                                                th:sessionId="${session.loginID}"
+                                                th:onclick="deleteComment(this.getAttribute('id'), this.getAttribute('writer'), this.getAttribute('sessionId'))"
+                                                type="button">댓글삭제
+                                        </button>
+                                    </th:block>
                                 </div>
                             </div>
                         </div>
