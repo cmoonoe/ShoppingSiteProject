@@ -34,8 +34,7 @@ public class Board {
     private String bContent;
 
     @ElementCollection
-    @CollectionTable(name = "files",
-            joinColumns = @JoinColumn(name = "fId", referencedColumnName = "bId"))
+    @CollectionTable(name = "files", joinColumns = @JoinColumn(name = "fId", referencedColumnName = "bId"))
     private List<UploadFile> pImageFiles;
 
     @Column(length = 20, name = "bPw", nullable = false)
