@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
     $("#Btn--uploadComment").click(function () {
-        if ($("#input--Content").val() == "" || $("#input--Writer").val() == "" || $("#input--Pw").val() == "") {
-            alert("모든 항목을 작성해주세요.");
+        if ($("#input--Content").val()) {
+            alert("내용을 작성해주세요.");
             $("#input--Writer").focus();
         }else {
             $.ajax({
