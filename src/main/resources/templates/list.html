@@ -6,16 +6,17 @@
 
         <h1> Review List </h1>
         <!--       0919 ho 추가 - 검색 버튼-->
+        <!--        0920 ho 추가 - 검색창 오른쪽이동/크기 조절-->
         <div style="height: 50px">
             <form th:action="@{/search/{pId}(pId=${pId})}" method="GET" class="form-inline p-2 bd-highlight" role="search">
                 <button class="btn btn-success bi bi-search" style="float: right">검색</button>
-                <input type="text" name="keyword" class="form-control" id="search" placeholder="검색" style="width: 70%; float: right">
+                <input type="text" name="keyword" class="form-control" id="search" placeholder="검색" style="width: 30%; float: right">
             </form>
         </div>
 
         <span>
-
-        <div class="d-flex flex-row-reverse">
+        <!--0920 ho 추가 - 글쓰기 버튼 왼쪽으로 이동-->
+        <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="p-2 btn btn-primary" th:text="글쓰기"
                     th:onclick="|location.href='@{/board/write/{pId}(pId=${pId})}'|">글쓰기
             </button>

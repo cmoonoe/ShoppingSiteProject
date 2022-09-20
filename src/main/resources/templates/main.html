@@ -8,6 +8,7 @@
                 <div class="col-md-6">
                     <img class="img-thumbnail" th:src="@{'/images/'+${i.count}+'.png'}" alt="..."/>
                 </div>
+                <!--                0920 - ho 추가. 이미지보일 곳              -->
 
                 <h2>[[${dto.pName}]]</h2>
                 <p><a class="btn btn-secondary" th:href="@{|/product/${dto.pId}|}">View details &raquo;</a></p>
