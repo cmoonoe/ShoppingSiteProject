@@ -35,7 +35,7 @@ public class Board {
 
     @ElementCollection
     @CollectionTable(name = "files",
-            joinColumns = @JoinColumn(name = "fId"))
+            joinColumns = @JoinColumn(name = "fId", referencedColumnName = "bId"))
     private List<UploadFile> pImageFiles;
 
     @Column(length = 20, name = "bPw", nullable = false)
