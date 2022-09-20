@@ -38,7 +38,7 @@
             <tbody id="tbody">
             <tr th:each="dto, i:${searchList}">
                 <td class="num"><b>[[${i.count}]]</b></td>
-                <td class="title"><a href="#">[[${dto.bTitle}]]</a></td>
+                <td class="title"><a th:href="@{/show/showBoard/{bId}(bId=${dto.bId})}">[[${dto.bTitle}]]</a></td>
                 <td class="writer">[[${dto.bWriter}]]</td>
                 <td class="date">[[${dto.bDate}]]</td>
                 <td>[[${dto.pId.pName}]]</td>

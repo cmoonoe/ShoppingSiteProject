@@ -6,9 +6,14 @@ package com.example.boardproject.service;
 
 import com.example.boardproject.domain.UploadFile;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +23,8 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class FileService {
+
+public class FileService implements WebMvcConfigurer {
     @Value("${file.dir}")
     private String fileDir;
 
@@ -57,5 +63,4 @@ public class FileService {
         int pos = originalFilename.lastIndexOf(".");
         return originalFilename.substring(pos + 1);
     }
-
 }
