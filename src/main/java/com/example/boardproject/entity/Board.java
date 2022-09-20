@@ -37,7 +37,7 @@ public class Board {
     @CollectionTable(name = "files", joinColumns = @JoinColumn(name = "fId", referencedColumnName = "bId"))
     private List<UploadFile> pImageFiles;
 
-    @Column(length = 20, name = "bPw", nullable = false)
+    @Column(length = 20, name = "bPw")
     private String bPw;
 
     @CreationTimestamp

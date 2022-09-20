@@ -31,7 +31,7 @@ public class Comment {
     @Column(updatable = false)
     private LocalDateTime cDate;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String cPw;
 
     @ManyToOne
