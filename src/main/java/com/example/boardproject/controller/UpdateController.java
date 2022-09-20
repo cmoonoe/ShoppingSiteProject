@@ -36,14 +36,14 @@ public class UpdateController {
 
     @PostMapping("/boardUpdate/{id}") //수정 DB 반영
     public String boardUpdate(@Param("title") String title, @Param("content") String content, @RequestParam("pImageFiles") MultipartFile image, @PathVariable("id") int bId) throws IOException {
-        System.out.println("================" + content);
-        if (image == null) {
+        if(!image.isEmpty()){
+            UploadFile uploadFile = fileService.storeFile(image);
+            boardDAO.deleteImage(bId);
+            boardDAO.update(title, content, bId);
+            boardDAO.insertImage(bId,uploadFile.getStoreFileName(),uploadFile.getUploadFileName());
+        }else{
             boardDAO.update(title, content, bId);
         }
-        UploadFile uploadFile = fileService.storeFile(image);
-        boardDAO.deleteImage(bId);
-        boardDAO.update(title, content, bId);
-        boardDAO.insertImage(bId,uploadFile.getStoreFileName(),uploadFile.getUploadFileName());
 
         return "redirect:/";
     }
