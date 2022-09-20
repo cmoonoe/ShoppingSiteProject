@@ -50,10 +50,12 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/image/2208101343_0000015.jpg" alt="..." /></div>
+            <div class="col-md-6" th:each="aa : ${board.pImageFiles}">
+                <img class="card-img-top mb-5 mb-md-0" th:src="@{/images/{storeFileName} (storeFileName= ${aa.storeFileName})}"  alt="..."/>
+            </div>
             <div class="col-md-6">
                 <h1 class="display-5 fw-bolder" th:text="${board.bTitle}"></h1>
-                <div class="small mb-1"th:text="|작성자 : ${board.bWriter}|"></div>
+                <div class="small mb-1" th:text="|작성자 : ${board.bWriter}|"></div>
                 <div class="small mb-1" th:text="|작성 일자 : ${#temporals.format(board.bDate, 'yyyy-MM-dd HH:mm:ss')}|"></div>
                 <p class="lead" th:text="${board.bContent}"></p>
             </div>
