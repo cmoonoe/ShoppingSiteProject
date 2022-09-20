@@ -13,7 +13,5 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("file:C://JavaProgramming/_project/myImage/");
         WebMvcConfigurer.super.addResourceHandlers(registry);
-
-
     }
 }
