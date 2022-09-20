@@ -48,12 +48,12 @@ public class Board {
     @JoinColumn(name = "pId")
     private Product pId;
 
-    public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, String bPw, Product pid) {
+    public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, Product pid) {
         this.bTitle = bTitle;
         this.bWriter = bWriter;
         this.bContent = bContent;
         this.pImageFiles = pImageFiles;
-        this.bPw = bPw;
+        this.bPw = "111";
         this.pId = pid;
     }
 }
