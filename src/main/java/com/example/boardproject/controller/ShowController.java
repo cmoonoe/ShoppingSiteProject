@@ -27,7 +27,10 @@ public class ShowController {
     @GetMapping("/showBoard/{bId}")
     public String showBoard(@PathVariable("bId") int bId, Model model){
 
-        BoardDTO board = showService.getByBId(bId);
+        int pId = BoardDTO.pId();
+
+        BoardDTO board = showService.getByBId(bId, pId);
+
         model.addAttribute("board", board);
 
         /* 댓글 목록 불러오기 - cw */
