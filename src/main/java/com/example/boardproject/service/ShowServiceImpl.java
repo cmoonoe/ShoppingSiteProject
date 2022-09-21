@@ -2,6 +2,7 @@ package com.example.boardproject.service;
 
 import com.example.boardproject.dto.BoardDTO;
 import com.example.boardproject.dto.ProductDTO;
+import com.example.boardproject.entity.Product;
 import com.example.boardproject.repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,9 +33,8 @@ public class ShowServiceImpl implements ShowService{
 
     /* 리뷰 사진이 없으면 상품 사진으로 대체 */
     private BoardDTO getReviewImage (BoardDTO boardDTO) {
-
         if (boardDTO.getPImageFiles() == null) {
-            //boardDTO.setPImageFiles(productDTO.getPImage());
+            //boardDTO.setPImageFiles(boardDTO.getPId().getPImageFiles());
             return boardDTO;
         } else {
             return boardDTO;
@@ -48,9 +48,9 @@ public class ShowServiceImpl implements ShowService{
         String AsteriskWriter = null;
 
         if (bWriter.length() < 4) {
-            AsteriskWriter = bWriter.replace(bWriter.substring(bWriter.length()-1), "*");
-        } else {
-            AsteriskWriter = bWriter.replace(bWriter.substring(bWriter.length()-3), "***");
+            AsteriskWriter = bWriter.substring(bWriter.length()-1) + "*";
+        } else if (bWriter.length() < 9) {
+            AsteriskWriter = bWriter.substring(bWriter.length()-1) + "***";
         }
 
         boardDTO.setBWriter(AsteriskWriter);
