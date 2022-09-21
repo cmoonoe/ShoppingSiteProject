@@ -17,9 +17,13 @@
         <span>
         <!--0920 ho 추가 - 글쓰기 버튼 왼쪽으로 이동-->
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-2 btn btn-primary" th:text="글쓰기"
-                    th:onclick="|location.href='@{/board/write/{pId}(pId=${pId})}'|">글쓰기
-            </button>
+            <th:block th:if="${session.loginID} eq null">
+            </th:block>
+             <th:block th:unless="${session.loginID} eq null">
+                <button type="button" class="p-2 btn btn-primary" th:text="글쓰기"
+                        th:onclick="|location.href='@{/board/write/{pId}(pId=${pId})}'|">글쓰기
+                </button>
+            </th:block>
         </div>
         </span>
         <table class="table table-striped table-hover">
