@@ -2,7 +2,6 @@ package com.example.boardproject.service;
 
 import com.example.boardproject.dto.BoardDTO;
 import com.example.boardproject.dto.ProductDTO;
-import com.example.boardproject.entity.Product;
 import com.example.boardproject.repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,30 +20,24 @@ public class ShowServiceImpl implements ShowService{
         this.productService = productService;
     }
 
-    /* bid로 board 찾기 */
+    /* bid로 boardDTO 찾기 */
     @Override
-    public BoardDTO getByBId(int bId, int pId) {
+    public BoardDTO getByBId(int bId) {
 
         BoardDTO boardDTO = boardService.entityToDto(showRepository.findByBId(bId).get());
-        ProductDTO productDTO = productService.entityToDto(showRepository.findByPId(pId).get());
+        ProductDTO productDTO = productService.entityToDto(showRepository.findByBId(bId).get().getPId());
 
-        boardDTO = getReviewImage(boardDTO, pId);
+        boardDTO = getReviewImage(boardDTO, productDTO);
         boardDTO = getAsteriskWriter (boardDTO);
 
         return boardDTO;
     }
 
-    @Override
-    public ProductDTO getByPId(int pId) {
-        ProductDTO productDTO = productService.entityToDto(showRepository.findByPId(pId).get());
-
-        return productDTO;
-    }
-
     /* 리뷰 사진이 없으면 상품 사진으로 대체 */
-    private BoardDTO getReviewImage (BoardDTO boardDTO, int pId) {
+    private BoardDTO getReviewImage (BoardDTO boardDTO, ProductDTO productDTO) {
+
         if (boardDTO.getPImageFiles() == null) {
-            boardDTO.setPImageFiles(getByPId(pId).getPImageFiles());
+            boardDTO.setPImageFiles(productDTO.getPImageFiles());
             return boardDTO;
         } else {
             return boardDTO;

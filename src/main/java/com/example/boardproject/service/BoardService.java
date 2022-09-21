@@ -8,7 +8,6 @@ import com.example.boardproject.entity.Board;
 
 public interface BoardService {
 
-
     default BoardDTO entityToDto(Board board) {
 
         BoardDTO boardDTO = BoardDTO.builder()
