@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -28,10 +30,19 @@ public class UpdateController {
     UpdateRepository updateRepository;
 
     @RequestMapping("/update/{id}") //수정 화면
-    public String boardUpdateForm(@PathVariable("id") int bId, Model model) {
-        model.addAttribute("idid", boardDAO.updateSelect(bId));
-        model.addAttribute("imageName",boardDAO.selectImage(bId));
-        return "updateBoard";
+    public String boardUpdateForm(@PathVariable("id") int bId, HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        System.out.println("==============================");
+        System.out.println(session.getAttribute("loginID"));
+        System.out.println(bId);
+        System.out.println(boardDAO.checkWriter(bId));
+        if(session.getAttribute("loginID").equals(boardDAO.checkWriter(bId))){
+            model.addAttribute("idid", boardDAO.updateSelect(bId));
+            model.addAttribute("imageName",boardDAO.selectImage(bId));
+            return "updateBoard";
+        }
+        model.addAttribute("bId", bId);
+        return "notSameAlert";
     }
 
     @PostMapping("/boardUpdate/{id}") //수정 DB 반영
@@ -49,8 +60,15 @@ public class UpdateController {
     }
 
     @RequestMapping("/boardDelete/{id}") // 삭제 DB 반영
-    public String boardDelete(@PathVariable("id") int bId) {
-        updateRepository.deleteById(bId);
-        return "redirect:/";
+    public String boardDelete(@PathVariable("id") int bId, HttpServletRequest request, Model model) {
+        HttpSession session= request.getSession();
+
+        if(session.getAttribute("loginID").equals(boardDAO.checkWriter(bId))){
+            updateRepository.deleteByCommentId(bId);
+            updateRepository.deleteById(bId);
+            return "redirect:/";
+        }
+        model.addAttribute("bId", bId);
+        return "notSameAlert";
     }
 }

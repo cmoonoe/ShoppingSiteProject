@@ -3,8 +3,10 @@ package com.example.boardproject.controller;
 import com.example.boardproject.dto.LoginDTO;
 import com.example.boardproject.entity.Member;
 import com.example.boardproject.service.LoginService;
+import com.example.boardproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     private final LoginService loginService;
-
+private final MemberService memberService;
     @GetMapping("/login")
     public String test(@ModelAttribute("loginDTO") LoginDTO loginDTO) {
         return "loginForm";
@@ -33,18 +35,17 @@ public class LoginController {
      * BindingResult는 항상 필시 @ModelAttribute 뒤에 와야하며 @ModelAttribute로 넘어온 값을 바인딩하여 저장하고 이를 검증하고 에러를 발생시킨다.
      */
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute("loginDTO") LoginDTO loginDTO, BindingResult bindingResult, HttpServletRequest request) {
+    public String login(@Validated @ModelAttribute("loginDTO") LoginDTO loginDTO, BindingResult bindingResult, HttpServletRequest request, Model model) {
 
-        if (bindingResult.hasErrors()) {
-            return "loginForm";
-        }
+
+
         //login 메서드는 값이 있다면 loginMember를 없다면 orElse(null)를 통해 Null을 반환한다.
         Member loginMember = loginService.login(loginDTO.getLoginId(), loginDTO.getPassword());
 
         //앞선 login메서드가 Null을 반환할 경우 bindingResult가 에러를 발생시킨다.
         if (loginMember == null) {
             bindingResult.addError(new ObjectError("loginDTO" , "로그인에 실패했습니다."));
-            return "loginForm";
+            return "alert2222";
         }
 
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
