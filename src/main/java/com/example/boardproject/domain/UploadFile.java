@@ -6,10 +6,12 @@ package com.example.boardproject.domain;
  */
 
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 @Data
+@Getter
 @Embeddable
 public class UploadFile {
     private String uploadFileName;

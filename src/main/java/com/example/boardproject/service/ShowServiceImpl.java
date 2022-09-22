@@ -23,22 +23,9 @@ public class ShowServiceImpl implements ShowService{
     public BoardDTO getByBId(int bId) {
 
         BoardDTO boardDTO = boardService.entityToDto(showRepository.findByBId(bId).get());
-
-        boardDTO = getReviewImage(boardDTO);
-        boardDTO = getAsteriskWriter (boardDTO);
+        boardDTO = getAsteriskWriter(boardDTO);
 
         return boardDTO;
-    }
-
-    /* 리뷰 사진이 없으면 상품 사진으로 대체 */
-    private BoardDTO getReviewImage (BoardDTO boardDTO) {
-
-        if (boardDTO.getPImageFiles() == null) {
-            //boardDTO.setPImageFiles(productDTO.getPImage());
-            return boardDTO;
-        } else {
-            return boardDTO;
-        }
     }
 
     /* 상세 리뷰 보기에서 작성자 이름 일부만 표시하기 */
@@ -48,9 +35,11 @@ public class ShowServiceImpl implements ShowService{
         String AsteriskWriter = null;
 
         if (bWriter.length() < 4) {
-            AsteriskWriter = bWriter.replace(bWriter.substring(bWriter.length()-1), "*");
+            AsteriskWriter = bWriter.substring(0, bWriter.length()-1) + "*";
+        } else if (bWriter.length() < 10) {
+            AsteriskWriter = bWriter.substring(0, bWriter.length()-3) + "***";
         } else {
-            AsteriskWriter = bWriter.replace(bWriter.substring(bWriter.length()-3), "***");
+            AsteriskWriter = bWriter.substring(0, bWriter.length()-5) + "*****";
         }
 
         boardDTO.setBWriter(AsteriskWriter);
