@@ -32,13 +32,18 @@
                         <!-- Image section-->
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <tr th:each="image, aa : ${board.pImageFiles}">
-                                    <div th:if="${aa.index < 1}" class="carousel-item active">
-                                        <img th:src="@{/images/{storeFileName} (storeFileName= ${image.storeFileName})}" class="d-block w-100" alt="...">
-                                    </div>
-                                    <div th:if="${aa.index > 0}"  class="carousel-item">
-                                        <img th:src="@{/images/{storeFileName} (storeFileName= ${image.storeFileName})}" class="d-block w-100" alt="...">
-                                    </div>
+                                <tr th:if="${#lists.size(board.pImageFiles)==0}">
+                                    <img class="img-thumbnail" th:src="@{'/image/'+${board.pId.pId}+'.png'}" alt="..."/>
+                                </tr>
+                                <tr th:unless="${board.pImageFiles!=null}">
+                                    <tr th:each="image, aa : ${board.pImageFiles}">
+                                        <div th:if="${aa.index < 1}" class="carousel-item active">
+                                            <img th:src="@{/images/{storeFileName} (storeFileName= ${image.storeFileName})}" class="d-block w-100" alt="...">
+                                        </div>
+                                        <div th:if="${aa.index > 0}"  class="carousel-item">
+                                            <img th:src="@{/images/{storeFileName} (storeFileName= ${image.storeFileName})}" class="d-block w-100" alt="...">
+                                        </div>
+                                    </tr>
                                 </tr>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

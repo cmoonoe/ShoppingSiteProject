@@ -11,37 +11,21 @@ public class ShowServiceImpl implements ShowService{
 
     private final ShowRepository showRepository;
     private final BoardService boardService;
-    private final ProductService productService;
 
     @Autowired
-    public ShowServiceImpl(ShowRepository showRepository, BoardService boardService, ProductService productService) {
+    public ShowServiceImpl(ShowRepository showRepository, BoardService boardService) {
         this.showRepository = showRepository;
         this.boardService = boardService;
-        this.productService = productService;
     }
 
-    /* bid로 boardDTO 찾기 */
+    /* bid로 board 찾기 */
     @Override
     public BoardDTO getByBId(int bId) {
 
         BoardDTO boardDTO = boardService.entityToDto(showRepository.findByBId(bId).get());
-        ProductDTO productDTO = productService.entityToDto(showRepository.findByBId(bId).get().getPId());
-
-        boardDTO = getReviewImage(boardDTO, productDTO);
-        boardDTO = getAsteriskWriter (boardDTO);
+        boardDTO = getAsteriskWriter(boardDTO);
 
         return boardDTO;
-    }
-
-    /* 리뷰 사진이 없으면 상품 사진으로 대체 */
-    private BoardDTO getReviewImage (BoardDTO boardDTO, ProductDTO productDTO) {
-
-        if (boardDTO.getPImageFiles() == null) {
-            boardDTO.setPImageFiles(productDTO.getPImageFiles());
-            return boardDTO;
-        } else {
-            return boardDTO;
-        }
     }
 
     /* 상세 리뷰 보기에서 작성자 이름 일부만 표시하기 */

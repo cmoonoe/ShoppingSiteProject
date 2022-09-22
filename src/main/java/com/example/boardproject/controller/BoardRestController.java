@@ -2,17 +2,16 @@ package com.example.boardproject.controller;
 
 import com.example.boardproject.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@RequiredArgsConstructor
 public class BoardRestController {
 
-    @Autowired
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
 
     /* 댓글 추가 - cw */
     @ResponseBody

@@ -16,8 +16,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
-@Service
+
 @Log4j2
+@Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 

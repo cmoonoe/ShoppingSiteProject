@@ -17,4 +17,15 @@ public class ProductDTO {
     private String pName;
     private List<UploadFile> pImageFiles;
 
+    //entity -> dto
+    public static ProductDTO entityToDto(Product product) {
+        ProductDTO dto = ProductDTO.builder()
+                .pId(product.getPId())
+                .pName(product.getPName())
+                .pImageFiles(product.getPImageFiles())
+                .build();
+
+        return dto;
+    }
+
 }
