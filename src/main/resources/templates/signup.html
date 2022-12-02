@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>회원가입</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+
+  <!-- CSS CDN -->
+  <link href="/css/bootstrap2.min.css" rel="stylesheet">
+  <!-- 아이콘 -->
+  <link th:href="@{/css/signin.css}" rel="stylesheet">
+</head>
+<body class="text-center">
+<th:block th:replace="~{/layout/template :: setContent(~{this::content})}">
+  <th:block th:fragment="content">
+
+    <div id="wrapper">
+      <main class="form-signin">
+        <div th:object="${memberDTO}" class="d-flex justify-content-center">
+          <form th:action="@{/member/new}" method="post" name="">
+            <img class="mb-4" src="/image/bootstrap-log.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">회원가입</h1>
+            <div class="form-floating">
+              <div>
+                <label for="loginId" th:text="아이디"/>
+                <input name="loginId" th:field="*{loginId}" id="loginId" type="text" class="form-control" placeholder="ID">
+              </div>
+              <div>
+                <label for="loginId" th:text="비밀번호"/>
+                <input name="password" th:field="*{password}" id="password" type="text" class="form-control" placeholder="Password">
+              </div>
+              <br/>
+              <br/>
+              <button class="btn btn-primary" type="submit" th:text="가입"/>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </th:block>
+</th:block>
+</body>
+</html>
+
+

@@ -1,9 +1,10 @@
 package com.example.boardproject.entity;
 
+import com.example.boardproject.domain.UploadFile;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import com.example.boardproject.domain.UploadFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -33,11 +34,10 @@ public class Board {
     private String bContent;
 
     @ElementCollection
-    @CollectionTable(name = "files",
-            joinColumns = @JoinColumn(name = "fId"))
+    @CollectionTable(name = "files", joinColumns = @JoinColumn(name = "fId", referencedColumnName = "bId"))
     private List<UploadFile> pImageFiles;
 
-    @Column(length = 20, name = "bPw", nullable = false)
+    @Column(length = 20, name = "bPw")
     private String bPw;
 
     @CreationTimestamp
@@ -48,12 +48,12 @@ public class Board {
     @JoinColumn(name = "pId")
     private Product pId;
 
-    public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, String bPw, Product pid) {
+    public Board(String bTitle, String bWriter, String bContent, List<UploadFile> pImageFiles, Product pid) {
         this.bTitle = bTitle;
         this.bWriter = bWriter;
         this.bContent = bContent;
         this.pImageFiles = pImageFiles;
-        this.bPw = bPw;
+        this.bPw = "111";
         this.pId = pid;
     }
 }
